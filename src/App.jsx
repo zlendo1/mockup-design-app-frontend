@@ -17,13 +17,14 @@ function App() {
 
     return (
         <Router basename='/'>
-            <Routes>
-                <div className='App'>
+            <div className='App'>
+                <Routes>
                     <Route path="/login" element={isLoggedIn ? <Home/> : <Login/>}/>
                     <Route path="/register" element={isLoggedIn ? <Home/> : <Register/>}/>
                     <Route path="/" element={isLoggedIn ? <Home/> : <Login/>}/>
-                </div>
-            </Routes>
+                </Routes>
+            </div>
+
         </Router>
     );
 }
