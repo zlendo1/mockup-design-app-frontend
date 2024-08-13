@@ -1,17 +1,49 @@
 import './Login.css';
+
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 const Login = () => {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+
 	const handleLogin = (e) => {
 		e.preventDefault();
-		// Add your login logic here
-		console.log('Username:', username);
-		console.log('Password:', password);
+
+		const requestBody = { username, password };
+
+		fetch(import.meta.env.BACKEND_URL + '/auth/login', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(requestBody)
+		})
+		.then(async response => {
+			if (response.ok) {
+				return response.json();
+			} else {
+				const data = await response.json();
+
+				throw new Error(data.message);
+			}
+		})
+		.then(data => {
+			Cookies.set('jwt', data.token);
+
+			setIsLoggedIn(true);
+		})
+		.catch(error => {
+			alert('Error:' + error.message);
+		});
 	};
+
+	if (isLoggedIn) {
+		window.location.reload();
+	}
 
 	return (
 		<div className="login-container">
