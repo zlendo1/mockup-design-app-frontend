@@ -10,7 +10,7 @@ function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
-        const jwtToken = Cookies.getItem('jwt');
+        const jwtToken = Cookies.get('jwt');
 
         setIsLoggedIn(!!jwtToken);
     }, []);
@@ -24,7 +24,6 @@ function App() {
                     <Route path="/" element={isLoggedIn ? <Home/> : <Login/>}/>
                 </Routes>
             </div>
-
         </Router>
     );
 }
