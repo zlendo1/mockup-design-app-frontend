@@ -1,22 +1,55 @@
 import { useState } from 'react';
 import './Register.css';
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const Register = () => {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
 
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+
 	const handleRegister = (e) => {
 		e.preventDefault();
-		// Add your registration logic here
-		if (password === confirmPassword) {
-			console.log('Username:', username);
-			console.log('Password:', password);
-		} else {
+
+		if (password !== confirmPassword) {
 			alert('Passwords do not match!');
+
+			return;
 		}
+
+		const requestBody = { username, password };
+
+		fetch(import.meta.env.BACKEND_URL + '/auth/register', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(requestBody)
+		})
+		.then(async response => {
+			if (response.ok) {
+				return response.json();
+			} else {
+				const data = await response.json();
+
+				throw new Error(data.message);
+			}
+		})
+		.then(data => {
+			Cookies.set('jwt', data.token);
+
+			setIsLoggedIn(true);
+		})
+		.catch(error => {
+			alert('Error:' + error.message);
+		});
 	};
+
+	if (isLoggedIn) {
+		window.location.reload();
+	}
 
 	return (
 		<div className="register-container">
