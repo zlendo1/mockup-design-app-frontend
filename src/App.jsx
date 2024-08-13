@@ -9,11 +9,11 @@ import Home from "./components/Home/Home.jsx";
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    /*useEffect(() => {
+    useEffect(() => {
         const jwtToken = Cookies.getItem('jwt');
 
         setIsLoggedIn(!!jwtToken);
-    }, []);*/
+    }, []);
 
     return (
         <Router basename='/'>
