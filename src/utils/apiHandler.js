@@ -1,3 +1,5 @@
+const BACKEND_URL = "https://mockup-design-app-backend.vercel.app";
+
 async function handleResponse(response) {
 	if (response.ok) {
 		return response.json();
@@ -16,7 +18,7 @@ async function handleResponse(response) {
  * @returns {Promise<Object>} - A promise that resolves to the JSON data from the response.
  */
 export function callPost(url, requestBody) {
-	return fetch(import.meta.env.BACKEND_URL + url, {
+	return fetch(BACKEND_URL + url, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
@@ -33,7 +35,7 @@ export function callPost(url, requestBody) {
  * @returns {Promise<Object>} - A promise that resolves to the JSON data from the response.
  */
 export function callGet(url) {
-	return fetch(import.meta.env.BACKEND_URL + url, {
+	return fetch(BACKEND_URL + url, {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json'
