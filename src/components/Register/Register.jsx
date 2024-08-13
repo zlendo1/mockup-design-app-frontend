@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 const Register = () => {
 	const [username, setUsername] = useState('');
-	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
 
@@ -13,7 +12,6 @@ const Register = () => {
 		// Add your registration logic here
 		if (password === confirmPassword) {
 			console.log('Username:', username);
-			console.log('Email:', email);
 			console.log('Password:', password);
 		} else {
 			alert('Passwords do not match!');
@@ -31,16 +29,6 @@ const Register = () => {
 						id="username"
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
-						required
-					/>
-				</div>
-				<div className="form-group">
-					<label htmlFor="email">Email:</label>
-					<input
-						type="email"
-						id="email"
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
 						required
 					/>
 				</div>

@@ -3,13 +3,13 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
-	const [email, setEmail] = useState('');
+	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 
 	const handleLogin = (e) => {
 		e.preventDefault();
 		// Add your login logic here
-		console.log('Email:', email);
+		console.log('Username:', username);
 		console.log('Password:', password);
 	};
 
@@ -18,12 +18,12 @@ const Login = () => {
 			<h2>Login</h2>
 			<form onSubmit={handleLogin}>
 				<div className="form-group">
-					<label htmlFor="email">Email:</label>
+					<label htmlFor="username">Username:</label>
 					<input
-						type="email"
-						id="email"
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
+						type="text"
+						id="username"
+						value={username}
+						onChange={(e) => setUsername(e.target.value)}
 						required
 					/>
 				</div>
