@@ -15,7 +15,7 @@ async function handleResponse(response) {
  * @param {Object} requestBody - The body of the POST request.
  * @returns {Promise<Object>} - A promise that resolves to the JSON data from the response.
  */
-function callPost(url, requestBody) {
+export function callPost(url, requestBody) {
 	return fetch(import.meta.env.BACKEND_URL + url, {
 		method: 'POST',
 		headers: {
@@ -32,7 +32,7 @@ function callPost(url, requestBody) {
  * @param {string} url - The URL to make the GET request to.
  * @returns {Promise<Object>} - A promise that resolves to the JSON data from the response.
  */
-function callGet(url) {
+export function callGet(url) {
 	return fetch(import.meta.env.BACKEND_URL + url, {
 		method: 'GET',
 		headers: {

@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
+import { callPost } from '../../utils/apiHandler.js';
+
 const Login = () => {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
@@ -15,22 +17,7 @@ const Login = () => {
 
 		const requestBody = { username, password };
 
-		fetch(import.meta.env.BACKEND_URL + '/auth/login', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(requestBody)
-		})
-		.then(async response => {
-			if (response.ok) {
-				return response.json();
-			} else {
-				const data = await response.json();
-
-				throw new Error(data.message);
-			}
-		})
+		callPost('/auth/login', requestBody)
 		.then(data => {
 			Cookies.set('jwt', data.token);
 

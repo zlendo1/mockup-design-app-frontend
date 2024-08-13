@@ -1,7 +1,10 @@
-import { useState } from 'react';
 import './Register.css';
+
+import { useState } from 'react';
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
+
+import { callPost } from "../../utils/apiHandler.js";
 
 const Register = () => {
 	const [username, setUsername] = useState('');
@@ -21,22 +24,7 @@ const Register = () => {
 
 		const requestBody = { username, password };
 
-		fetch(import.meta.env.BACKEND_URL + '/auth/register', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(requestBody)
-		})
-		.then(async response => {
-			if (response.ok) {
-				return response.json();
-			} else {
-				const data = await response.json();
-
-				throw new Error(data.message);
-			}
-		})
+		callPost('/auth/register', requestBody)
 		.then(data => {
 			Cookies.set('jwt', data.token);
 
