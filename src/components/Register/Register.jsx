@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './Register.css';
+import { Link } from "react-router-dom";
 
 const Register = () => {
 	const [username, setUsername] = useState('');
@@ -63,6 +64,10 @@ const Register = () => {
 						required
 					/>
 				</div>
+				<p className="login-link">
+					{/* eslint-disable-next-line react/no-unescaped-entities */}
+					Already have an account? <Link to="/login">Login</Link>
+				</p>
 				<button type="submit" className="register-button">Register</button>
 			</form>
 		</div>
