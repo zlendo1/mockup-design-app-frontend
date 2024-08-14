@@ -1,4 +1,4 @@
-const BACKEND_URL = "https://mockup-design-app-backend.vercel.app";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 async function handleResponse(response) {
 	if (response.ok) {
