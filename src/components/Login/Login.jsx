@@ -16,6 +16,10 @@ const Login = () => {
 		setIsLoggedIn(!!Cookies.get('jwt'));
 	}, []);
 
+	if (isLoggedIn) {
+		window.location.reload();
+	}
+
 	const handleLogin = (e) => {
 		e.preventDefault();
 
@@ -31,10 +35,6 @@ const Login = () => {
 			alert('Error:' + error.message);
 		});
 	};
-
-	if (isLoggedIn) {
-		window.location.reload();
-	}
 
 	return (
 		<div className="login-container">

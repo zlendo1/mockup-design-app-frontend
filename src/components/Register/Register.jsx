@@ -17,6 +17,10 @@ const Register = () => {
 		setIsLoggedIn(!!Cookies.get('jwt'));
 	}, []);
 
+	if (isLoggedIn) {
+		window.location.reload();
+	}
+
 	const handleRegister = (e) => {
 		e.preventDefault();
 
@@ -38,10 +42,6 @@ const Register = () => {
 			alert('Error:' + error.message);
 		});
 	};
-
-	if (isLoggedIn) {
-		window.location.reload();
-	}
 
 	return (
 		<div className="register-container">
