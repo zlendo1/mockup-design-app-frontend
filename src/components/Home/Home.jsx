@@ -14,7 +14,7 @@ const Home = ({ children }) => {
 		setIsLoggedIn(!!Cookies.get('jwt'));
 	}, []);
 
-	if (isLoggedIn) {
+	if (!isLoggedIn) {
 		window.location.reload();
 	}
 
