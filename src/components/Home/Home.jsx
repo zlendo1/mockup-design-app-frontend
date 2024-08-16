@@ -1,10 +1,33 @@
 import './Home.css'
 
-const Home = () => {
+import Sidebar from '../Sidebar/Sidebar';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+
+import { useEffect, useState } from 'react';
+import Cookies from "js-cookie";
+
+const Home = ({ children }) => {
+	const [isLoggedIn, setIsLoggedIn] = useState(!!Cookies.get('jwt'));
+
+	useEffect(() => {
+		setIsLoggedIn(!!Cookies.get('jwt'));
+	}, []);
+
+	if (isLoggedIn) {
+		window.location.reload();
+	}
+
 	return (
 		<div className="home-container">
-			<h1>Home</h1>
-			<p>Welcome to the Home page</p>
+			<Header />
+			<div className="main-content">
+				<Sidebar />
+				<div className="content">
+					{children}
+				</div>
+			</div>
+			<Footer />
 		</div>
 	);
 }
