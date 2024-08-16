@@ -1,6 +1,6 @@
 import './Register.css';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 
@@ -11,7 +11,11 @@ const Register = () => {
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
 
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [isLoggedIn, setIsLoggedIn] = useState(!!Cookies.get('jwt'));
+
+	useEffect(() => {
+		setIsLoggedIn(!!Cookies.get('jwt'));
+	}, []);
 
 	const handleRegister = (e) => {
 		e.preventDefault();

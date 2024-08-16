@@ -7,12 +7,10 @@ import Register from './components/Register/Register.jsx';
 import Home from "./components/Home/Home.jsx";
 
 function App() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(!!Cookies.get('jwt'));
 
     useEffect(() => {
-        const jwtToken = Cookies.get('jwt');
-
-        setIsLoggedIn(!!jwtToken);
+        setIsLoggedIn(!!Cookies.get('jwt'));
     }, []);
 
     return (

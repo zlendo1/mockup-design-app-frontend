@@ -1,6 +1,6 @@
 import './Login.css';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
@@ -10,7 +10,11 @@ const Login = () => {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [isLoggedIn, setIsLoggedIn] = useState(!!Cookies.get('jwt'));
+
+	useEffect(() => {
+		setIsLoggedIn(!!Cookies.get('jwt'));
+	}, []);
 
 	const handleLogin = (e) => {
 		e.preventDefault();
