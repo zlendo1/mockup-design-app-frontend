@@ -15,6 +15,7 @@
 
 #root {
     margin: auto;
+    min-width: 100%;
 }
 
 a {
