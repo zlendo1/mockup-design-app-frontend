@@ -37,7 +37,7 @@ const Login = () => {
     }
 
     return (
-        <div className="login-container w-1/3">
+        <div className="login-container w-80">
             <h2 className="mb-5 mt-5 text-2xl font-bold">Login</h2>
             <form onSubmit={handleLogin}>
                 <div className="form-group">
