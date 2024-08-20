@@ -1,13 +1,13 @@
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
 
 async function handleResponse(response) {
-	if (response.ok) {
-		return response.json();
-	} else {
-		const data = await response.json();
+    if (response.ok) {
+        return response.json()
+    } else {
+        const data = await response.json()
 
-		throw new Error(data.message);
-	}
+        throw new Error(data.message)
+    }
 }
 
 /**
@@ -18,14 +18,13 @@ async function handleResponse(response) {
  * @returns {Promise<Object>} - A promise that resolves to the JSON data from the response.
  */
 export function callPost(url, requestBody) {
-	return fetch(BACKEND_URL + url, {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(requestBody)
-	})
-	.then(async response => handleResponse(response))
+    return fetch(BACKEND_URL + url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
+    }).then(async (response) => handleResponse(response))
 }
 
 /**
@@ -35,16 +34,15 @@ export function callPost(url, requestBody) {
  * @returns {Promise<Object>} - A promise that resolves to the JSON data from the response.
  */
 export function callGet(url) {
-	return fetch(BACKEND_URL + url, {
-		method: 'GET',
-		headers: {
-			'Content-Type': 'application/json'
-		}
-	})
-	.then(async response => handleResponse(response))
+    return fetch(BACKEND_URL + url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    }).then(async (response) => handleResponse(response))
 }
 
 export default {
-	callPost,
-	callGet
-};
+    callPost,
+    callGet,
+}
