@@ -37,12 +37,13 @@ const Login = () => {
     }
 
     return (
-        <div className="login-container">
-            <h2>Login</h2>
+        <div className="login-container w-1/3">
+            <h2 className="mb-5 mt-5 text-2xl font-bold">Login</h2>
             <form onSubmit={handleLogin}>
                 <div className="form-group">
                     <label htmlFor="username">Username:</label>
                     <input
+                        className="p-1"
                         type="text"
                         id="username"
                         value={username}
@@ -53,6 +54,7 @@ const Login = () => {
                 <div className="form-group">
                     <label htmlFor="password">Password:</label>
                     <input
+                        className="p-1"
                         type="password"
                         id="password"
                         value={password}
@@ -60,7 +62,7 @@ const Login = () => {
                         required
                     />
                 </div>
-                <p className="register-link">
+                <p className="register-link mb-4 mt-4">
                     {/* eslint-disable-next-line react/no-unescaped-entities */}
                     Don't have an account? <Link to="/register">Register</Link>
                 </p>

@@ -44,12 +44,13 @@ const Register = () => {
     }
 
     return (
-        <div className="register-container">
-            <h2>Register</h2>
+        <div className="register-container w-1/3">
+            <h2 className="mb-5 mt-5 text-2xl font-bold">Register</h2>
             <form onSubmit={handleRegister}>
                 <div className="form-group">
                     <label htmlFor="username">Username:</label>
                     <input
+                        className="p-1"
                         type="text"
                         id="username"
                         value={username}
@@ -60,6 +61,7 @@ const Register = () => {
                 <div className="form-group">
                     <label htmlFor="password">Password:</label>
                     <input
+                        className="p-1"
                         type="password"
                         id="password"
                         value={password}
@@ -70,6 +72,7 @@ const Register = () => {
                 <div className="form-group">
                     <label htmlFor="confirm-password">Confirm Password:</label>
                     <input
+                        className="p-1"
                         type="password"
                         id="confirm-password"
                         value={confirmPassword}
@@ -77,7 +80,7 @@ const Register = () => {
                         required
                     />
                 </div>
-                <p className="login-link">
+                <p className="login-link mb-4 mt-4">
                     {/* eslint-disable-next-line react/no-unescaped-entities */}
                     Already have an account? <Link to="/login">Login</Link>
                 </p>
