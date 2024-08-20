@@ -15,11 +15,14 @@ const Home = () => {
         window.location.reload()
     }
 
+    // eslint-disable-next-line no-unused-vars
     const [username, setUsername] = useState('JohnDoe') // Placeholder for the logged-in user's name
     const [selectedProject, setSelectedProject] = useState(null) // Track the selected project
 
     const handleLogout = () => {
-        // Logout logic here
+        Cookies.remove('jwt')
+
+        window.location.reload()
     }
 
     const handleProjectSelect = () => {
