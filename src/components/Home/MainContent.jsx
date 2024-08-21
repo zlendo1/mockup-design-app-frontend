@@ -9,7 +9,7 @@ const MainContent = ({
 	onSelectProject,
 }) => {
 	return (
-		<main className="flex-grow p-4">
+		<div className="flex flex-grow p-4">
 			{selectedProject ? (
 				<ProjectEditor projectName={selectedProject} />
 			) : (
@@ -18,7 +18,7 @@ const MainContent = ({
 					onSelectProject={onSelectProject}
 				/>
 			)}
-		</main>
+		</div>
 	)
 }
 
