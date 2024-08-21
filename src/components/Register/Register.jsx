@@ -35,6 +35,7 @@ const Register = () => {
 		callPost('/auth/register', requestBody)
 			.then(data => {
 				Cookies.set('jwt', data.token)
+				localStorage.setItem('username', requestBody.username)
 
 				setIsLoggedIn(true)
 			})

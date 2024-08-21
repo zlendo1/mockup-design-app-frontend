@@ -15,12 +15,11 @@ const Home = () => {
 		window.location.reload()
 	}
 
-	// eslint-disable-next-line no-unused-vars
-	const [username, setUsername] = useState('JohnDoe') // Placeholder for the logged-in user's name
 	const [selectedProject, setSelectedProject] = useState(null) // Track the selected project
 
 	const handleLogout = () => {
 		Cookies.remove('jwt')
+		localStorage.removeItem('username')
 
 		window.location.reload()
 	}
@@ -46,7 +45,7 @@ const Home = () => {
 	return (
 		<div className="flex min-h-full min-w-full flex-col">
 			<Header
-				username={username}
+				username={localStorage.getItem('username')}
 				onLogout={handleLogout}
 				onProjectSelect={handleProjectSelect}
 				onSave={handleSave}

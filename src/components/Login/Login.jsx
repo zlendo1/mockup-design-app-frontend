@@ -28,11 +28,12 @@ const Login = () => {
 		callPost('/auth/login', requestBody)
 			.then(data => {
 				Cookies.set('jwt', data.token)
+				localStorage.setItem('username', requestBody.username)
 
 				setIsLoggedIn(true)
 			})
 			.catch(error => {
-				alert('Error:' + error.message)
+				alert('Error: ' + error.message)
 			})
 	}
 

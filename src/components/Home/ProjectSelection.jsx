@@ -12,7 +12,7 @@ const ProjectSelection = ({ onCreateNewProject, onSelectProject }) => {
 	}
 
 	return (
-		<div className="p-4">
+		<div className="ml-auto mr-auto w-1/2 p-4">
 			<h2 className="mb-4 text-2xl font-semibold">Your Projects</h2>
 			{/* Existing Projects */}
 			<div className="mb-6">
