@@ -1,8 +1,14 @@
 import PropTypes from 'prop-types'
 import { useState } from 'react'
 
+import ComponentHierarchy from './ComponentHierarchy'
+import ComponentStyling from './ComponentStyling'
+
 const ProjectEditor = ({ projectName }) => {
 	const [activeTab, setActiveTab] = useState('hierarchy') // State to track the active tab
+
+	const [width, setWidth] = useState('') // State for width
+	const [height, setHeight] = useState('') // State for height
 
 	return (
 		<div className="flex flex-grow">
@@ -41,43 +47,14 @@ const ProjectEditor = ({ projectName }) => {
 					</button>
 				</div>
 
-				{activeTab === 'hierarchy' && (
-					<div>
-						<h3 className="mb-4 text-xl">Component Hierarchy</h3>
-						{/* Hierarchy of components inside the canvas */}
-						<ul>
-							<li>Button</li>
-							<li>Input Field</li>
-							{/* Add more components here */}
-						</ul>
-					</div>
-				)}
-
+				{activeTab === 'hierarchy' && <ComponentHierarchy />}
 				{activeTab === 'styling' && (
-					<div>
-						<h3 className="mb-4 text-xl">Component Styling</h3>
-						{/* Styling options for selected component */}
-						<div>
-							<label className="mb-2 block">Size</label>
-							<input
-								type="text"
-								className="mb-4 w-full border p-2"
-								placeholder="Width x Height"
-							/>
-							<label className="mb-2 block">Color</label>
-							<input
-								type="color"
-								className="mb-4 w-full border p-2"
-							/>
-							<label className="mb-2 block">
-								Background Color
-							</label>
-							<input
-								type="color"
-								className="mb-4 w-full border p-2"
-							/>
-						</div>
-					</div>
+					<ComponentStyling
+						getHeight={() => height}
+						getWidth={() => width}
+						onSetHeight={setHeight}
+						onSetWidth={setWidth}
+					/>
 				)}
 			</aside>
 		</div>
