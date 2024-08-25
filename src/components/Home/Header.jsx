@@ -1,27 +1,37 @@
 import PropTypes from 'prop-types'
 
-const Header = ({ username, onLogout, onProjectSelect, onSave }) => {
+const Header = ({
+	username,
+	onLogout,
+	onProjectSelect,
+	onSave,
+	selectedProject,
+}) => {
 	return (
-		<header className="flex items-center justify-between bg-blue-600 p-4 text-white">
-			<div className="flex items-center">
-				<span className="mr-4">Welcome, {username}</span>
+		<header className="flex items-center justify-between bg-gray-200 p-4">
+			<div className="flex space-x-4">
+				<span className="text-lg font-semibold">
+					Welcome, {username}
+				</span>
 				<button
 					onClick={onProjectSelect}
-					className="rounded bg-blue-700 px-4 py-2"
+					className="rounded bg-blue-500 px-4 py-2 text-white"
 				>
 					Select Project
 				</button>
 			</div>
-			<div className="flex items-center">
-				<button
-					onClick={onSave}
-					className="mr-4 rounded bg-green-600 px-4 py-2"
-				>
-					Save
-				</button>
+			<div className="flex space-x-4">
+				{selectedProject && (
+					<button
+						onClick={onSave}
+						className="rounded bg-green-500 px-4 py-2 text-white"
+					>
+						Save
+					</button>
+				)}
 				<button
 					onClick={onLogout}
-					className="rounded bg-red-600 px-4 py-2"
+					className="rounded bg-red-500 px-4 py-2 text-white"
 				>
 					Logout
 				</button>
@@ -35,6 +45,7 @@ Header.propTypes = {
 	onLogout: PropTypes.func.isRequired,
 	onProjectSelect: PropTypes.func.isRequired,
 	onSave: PropTypes.func.isRequired,
+	selectedProject: PropTypes.object.isRequired,
 }
 
 export default Header

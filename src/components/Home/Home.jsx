@@ -49,6 +49,7 @@ const Home = () => {
 				onLogout={handleLogout}
 				onProjectSelect={handleProjectSelect}
 				onSave={handleSave}
+				selectedProject={selectedProject}
 			/>
 			<MainContent
 				selectedProject={selectedProject}
