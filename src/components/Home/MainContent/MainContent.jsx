@@ -1,5 +1,5 @@
-import ProjectSelection from './ProjectSelection'
-import ProjectEditor from './ProjectEditor'
+import Selection from './Selection/Selection.jsx'
+import Editor from './ProjectEditor/Editor.jsx'
 
 import PropTypes from 'prop-types'
 
@@ -11,9 +11,9 @@ const MainContent = ({
 	return (
 		<div className="flex flex-grow p-4">
 			{selectedProject ? (
-				<ProjectEditor projectName={selectedProject} />
+				<Editor projectName={selectedProject} />
 			) : (
-				<ProjectSelection
+				<Selection
 					onCreateNewProject={onCreateNewProject}
 					onSelectProject={onSelectProject}
 				/>

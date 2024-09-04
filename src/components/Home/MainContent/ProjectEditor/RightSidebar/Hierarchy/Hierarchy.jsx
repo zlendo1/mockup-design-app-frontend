@@ -1,4 +1,4 @@
-const ComponentHierarchy = () => {
+const Hierarchy = () => {
 	return (
 		<div>
 			<h3 className="mb-4 text-xl">Component Hierarchy</h3>
@@ -12,4 +12,4 @@ const ComponentHierarchy = () => {
 	)
 }
 
-export default ComponentHierarchy
+export default Hierarchy

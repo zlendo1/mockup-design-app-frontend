@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
 
-const ProjectSelection = ({ onCreateNewProject, onSelectProject }) => {
+const Selection = ({ onCreateNewProject, onSelectProject }) => {
 	const [newProjectName, setNewProjectName] = useState('')
 
 	const handleCreateProject = () => {
@@ -46,9 +46,9 @@ const ProjectSelection = ({ onCreateNewProject, onSelectProject }) => {
 	)
 }
 
-ProjectSelection.propTypes = {
+Selection.propTypes = {
 	onCreateNewProject: PropTypes.func.isRequired,
 	onSelectProject: PropTypes.func.isRequired,
 }
 
-export default ProjectSelection
+export default Selection

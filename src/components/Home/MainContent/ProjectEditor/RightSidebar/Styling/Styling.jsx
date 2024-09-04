@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 
-const ComponentStyling = ({ getWidth, onSetWidth, getHeight, onSetHeight }) => {
+const Styling = ({ getWidth, onSetWidth, getHeight, onSetHeight }) => {
 	return (
 		<div>
 			<h3 className="mb-4 text-xl">Component Styling</h3>
@@ -33,11 +33,11 @@ const ComponentStyling = ({ getWidth, onSetWidth, getHeight, onSetHeight }) => {
 	)
 }
 
-ComponentStyling.propTypes = {
+Styling.propTypes = {
 	getWidth: PropTypes.func.isRequired,
 	onSetWidth: PropTypes.func.isRequired,
 	getHeight: PropTypes.func.isRequired,
 	onSetHeight: PropTypes.func.isRequired,
 }
 
-export default ComponentStyling
+export default Styling

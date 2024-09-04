@@ -1,5 +1,5 @@
-import Header from './Header'
-import MainContent from './MainContent'
+import Header from './Header/Header.jsx'
+import MainContent from './MainContent/MainContent.jsx'
 
 import { useEffect, useState } from 'react'
 import Cookies from 'js-cookie'
