@@ -38,8 +38,8 @@ const RightSidebar = ({ height, width, setHeight, setWidth }) => {
 }
 
 RightSidebar.propTypes = {
-	height: PropTypes.number.isRequired,
-	width: PropTypes.number.isRequired,
+	height: PropTypes.string.isRequired,
+	width: PropTypes.string.isRequired,
 	setHeight: PropTypes.func.isRequired,
 	setWidth: PropTypes.func.isRequired,
 }
