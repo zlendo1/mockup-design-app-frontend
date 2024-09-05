@@ -3,6 +3,7 @@ import { useState } from 'react'
 
 import LeftSidebar from './LeftSidebar/LeftSidebar.jsx'
 import RightSidebar from './RightSidebar/RightSidebar.jsx'
+import Canvas from './Canvas/Canvas.jsx'
 
 const Editor = ({ projectName }) => {
 	const [width, setWidth] = useState('') // State for width
@@ -11,11 +12,7 @@ const Editor = ({ projectName }) => {
 	return (
 		<div className="flex flex-grow">
 			<LeftSidebar projectName={projectName} />
-			<div className="flex-grow border bg-white p-4">
-				<div className="h-full border-2 border-dashed border-gray-400">
-					{/* Drop components here */}
-				</div>
-			</div>
+			<Canvas />
 			<RightSidebar
 				height={height}
 				width={width}
