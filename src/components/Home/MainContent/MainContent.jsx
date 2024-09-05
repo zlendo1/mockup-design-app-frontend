@@ -11,7 +11,7 @@ const MainContent = ({
 	return (
 		<div className="flex flex-grow p-4">
 			{selectedProject ? (
-				<Editor projectName={selectedProject} />
+				<Editor project={selectedProject} />
 			) : (
 				<Selection
 					onCreateNewProject={onCreateNewProject}
@@ -23,7 +23,7 @@ const MainContent = ({
 }
 
 MainContent.propTypes = {
-	selectedProject: PropTypes.string,
+	selectedProject: PropTypes.object,
 	onCreateNewProject: PropTypes.func.isRequired,
 	onSelectProject: PropTypes.func.isRequired,
 }

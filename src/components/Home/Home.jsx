@@ -34,12 +34,12 @@ const Home = () => {
 
 	// TODO: Implement project creation logic
 	const handleCreateNewProject = projectName => {
-		setSelectedProject(projectName)
+		setSelectedProject({ name: projectName })
 	}
 
 	// TODO: Implement project selection logic by id
 	const handleSelectProject = projectName => {
-		setSelectedProject(projectName)
+		setSelectedProject({ name: projectName })
 	}
 
 	return (

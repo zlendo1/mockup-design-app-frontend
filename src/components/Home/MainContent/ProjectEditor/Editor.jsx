@@ -5,13 +5,13 @@ import LeftSidebar from './LeftSidebar/LeftSidebar.jsx'
 import RightSidebar from './RightSidebar/RightSidebar.jsx'
 import Canvas from './Canvas/Canvas.jsx'
 
-const Editor = ({ projectName }) => {
+const Editor = ({ project }) => {
 	const [width, setWidth] = useState('') // State for width
 	const [height, setHeight] = useState('') // State for height
 
 	return (
 		<div className="flex flex-grow">
-			<LeftSidebar projectName={projectName} />
+			<LeftSidebar projectName={project.name} />
 			<Canvas />
 			<RightSidebar
 				height={height}
@@ -24,7 +24,7 @@ const Editor = ({ projectName }) => {
 }
 
 Editor.propTypes = {
-	projectName: PropTypes.string.isRequired,
+	project: PropTypes.object.isRequired,
 }
 
 export default Editor

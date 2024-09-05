@@ -45,7 +45,7 @@ Header.propTypes = {
 	onLogout: PropTypes.func.isRequired,
 	onProjectSelect: PropTypes.func.isRequired,
 	onSave: PropTypes.func.isRequired,
-	selectedProject: PropTypes.object.isRequired,
+	selectedProject: PropTypes.object,
 }
 
 export default Header
