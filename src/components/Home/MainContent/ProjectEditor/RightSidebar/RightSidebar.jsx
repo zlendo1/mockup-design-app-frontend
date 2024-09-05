@@ -27,8 +27,8 @@ const RightSidebar = ({ height, width, setHeight, setWidth }) => {
 			{activeTab === 'hierarchy' && <Hierarchy />}
 			{activeTab === 'styling' && (
 				<Styling
-					getHeight={() => height}
-					getWidth={() => width}
+					height={height}
+					width={width}
 					onSetHeight={setHeight}
 					onSetWidth={setWidth}
 				/>

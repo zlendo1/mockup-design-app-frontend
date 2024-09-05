@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 
-const Styling = ({ getWidth, onSetWidth, getHeight, onSetHeight }) => {
+const Styling = ({ width, onSetWidth, height, onSetHeight }) => {
 	return (
 		<div>
 			<h3 className="mb-4 text-xl">Component Styling</h3>
@@ -10,7 +10,7 @@ const Styling = ({ getWidth, onSetWidth, getHeight, onSetHeight }) => {
 				<div className="mb-4 flex items-center">
 					<input
 						type="text"
-						value={getWidth()}
+						value={width}
 						onChange={e => onSetWidth(e.target.value)}
 						className="w-full border p-2"
 						placeholder="Width"
@@ -18,7 +18,7 @@ const Styling = ({ getWidth, onSetWidth, getHeight, onSetHeight }) => {
 					<span className="mx-2">x</span>
 					<input
 						type="text"
-						value={getHeight()}
+						value={height}
 						onChange={e => onSetHeight(e.target.value)}
 						className="w-full border p-2"
 						placeholder="Height"
@@ -34,9 +34,9 @@ const Styling = ({ getWidth, onSetWidth, getHeight, onSetHeight }) => {
 }
 
 Styling.propTypes = {
-	getWidth: PropTypes.func.isRequired,
+	width: PropTypes.string.isRequired,
 	onSetWidth: PropTypes.func.isRequired,
-	getHeight: PropTypes.func.isRequired,
+	height: PropTypes.string.isRequired,
 	onSetHeight: PropTypes.func.isRequired,
 }
 
