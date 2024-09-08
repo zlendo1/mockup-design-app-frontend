@@ -5,14 +5,14 @@ import LeftSidebar from './LeftSidebar/LeftSidebar.jsx'
 import RightSidebar from './RightSidebar/RightSidebar.jsx'
 import Canvas from './Canvas/Canvas.jsx'
 
-const Editor = ({ project }) => {
+const Workspace = ({ project, onSave }) => {
 	const [width, setWidth] = useState('') // State for width
 	const [height, setHeight] = useState('') // State for height
 
 	return (
 		<div className="flex flex-grow">
 			<LeftSidebar projectName={project.name} />
-			<Canvas />
+			<Canvas onSave={onSave} />
 			<RightSidebar
 				height={height}
 				width={width}
@@ -23,8 +23,9 @@ const Editor = ({ project }) => {
 	)
 }
 
-Editor.propTypes = {
+Workspace.propTypes = {
 	project: PropTypes.object.isRequired,
+	onSave: PropTypes.func.isRequired,
 }
 
-export default Editor
+export default Workspace

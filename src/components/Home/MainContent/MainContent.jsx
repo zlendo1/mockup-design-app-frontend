@@ -1,5 +1,5 @@
 import Selection from './Selection/Selection.jsx'
-import Editor from './ProjectEditor/Editor.jsx'
+import Workspace from './ProjectEditor/Workspace.jsx'
 
 import PropTypes from 'prop-types'
 
@@ -7,11 +7,12 @@ const MainContent = ({
 	selectedProject,
 	onCreateNewProject,
 	onSelectProject,
+	onSave,
 }) => {
 	return (
 		<div className="flex flex-grow p-4">
 			{selectedProject ? (
-				<Editor project={selectedProject} />
+				<Workspace project={selectedProject} onSave={onSave} />
 			) : (
 				<Selection
 					onCreateNewProject={onCreateNewProject}
@@ -26,6 +27,7 @@ MainContent.propTypes = {
 	selectedProject: PropTypes.object,
 	onCreateNewProject: PropTypes.func.isRequired,
 	onSelectProject: PropTypes.func.isRequired,
+	onSave: PropTypes.func.isRequired,
 }
 
 export default MainContent

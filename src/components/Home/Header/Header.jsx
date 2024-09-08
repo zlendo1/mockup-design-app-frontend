@@ -1,12 +1,6 @@
 import PropTypes from 'prop-types'
 
-const Header = ({
-	username,
-	onLogout,
-	onProjectSelect,
-	onSave,
-	selectedProject,
-}) => {
+const Header = ({ username, onLogout, onProjectSelect }) => {
 	return (
 		<header className="flex items-center justify-between bg-gray-200 p-4">
 			<div className="flex space-x-4">
@@ -21,14 +15,6 @@ const Header = ({
 				</button>
 			</div>
 			<div className="flex space-x-4">
-				{selectedProject && (
-					<button
-						onClick={onSave}
-						className="rounded bg-green-500 px-4 py-2 text-white"
-					>
-						Save
-					</button>
-				)}
 				<button
 					onClick={onLogout}
 					className="rounded bg-red-500 px-4 py-2 text-white"
@@ -44,8 +30,6 @@ Header.propTypes = {
 	username: PropTypes.string.isRequired,
 	onLogout: PropTypes.func.isRequired,
 	onProjectSelect: PropTypes.func.isRequired,
-	onSave: PropTypes.func.isRequired,
-	selectedProject: PropTypes.object,
 }
 
 export default Header

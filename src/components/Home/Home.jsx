@@ -48,13 +48,12 @@ const Home = () => {
 				username={localStorage.getItem('username')}
 				onLogout={handleLogout}
 				onProjectSelect={handleProjectSelect}
-				onSave={handleSave}
-				selectedProject={selectedProject}
 			/>
 			<MainContent
 				selectedProject={selectedProject}
 				onCreateNewProject={handleCreateNewProject}
 				onSelectProject={handleSelectProject}
+				onSave={handleSave}
 			/>
 		</div>
 	)
