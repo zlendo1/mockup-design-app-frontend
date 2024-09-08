@@ -11,6 +11,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@craftjs/core": "^0.2.10",
     "js-cookie": "^3.0.5",
     "jwt-decode": "^4.0.0",
     "prop-types": "^15.8.1",
