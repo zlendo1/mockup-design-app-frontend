@@ -82,7 +82,10 @@ const Register = () => {
 					/>
 				</div>
 				<p className="login-link mb-4 mt-4">
-					Already have an account? <Link to="/login">Login</Link>
+					Already have an account?{' '}
+					<Link to="/login" className="text-blue-500 hover:underline">
+						Login
+					</Link>
 				</p>
 				<button type="submit" className="register-button">
 					Register
