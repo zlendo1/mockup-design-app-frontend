@@ -7,14 +7,14 @@ const Header = ({ username, onLogout, onProjectSelect }) => {
 				<span className="text-lg font-semibold">
 					Welcome, {username}
 				</span>
+			</div>
+			<div className="flex space-x-4">
 				<button
 					onClick={onProjectSelect}
 					className="rounded bg-blue-500 px-4 py-2 text-white"
 				>
 					Select Project
 				</button>
-			</div>
-			<div className="flex space-x-4">
 				<button
 					onClick={onLogout}
 					className="rounded bg-red-500 px-4 py-2 text-white"
