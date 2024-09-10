@@ -10,7 +10,7 @@ const MainContent = ({
 	onSave,
 }) => {
 	return (
-		<div className="flex flex-grow p-4">
+		<div className="flex flex-grow">
 			{selectedProject ? (
 				<Workspace project={selectedProject} onSave={onSave} />
 			) : (

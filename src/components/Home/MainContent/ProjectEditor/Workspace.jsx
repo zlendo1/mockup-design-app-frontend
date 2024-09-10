@@ -24,9 +24,11 @@ const Workspace = ({ project, onSave }) => {
 				<div className="relative flex flex-1 overflow-hidden">
 					<LeftSidebar projectName={project.name} />
 					<Viewport>
-						<Frame>
-							<Element is={Canvas} id="ROOT" canvas></Element>
-						</Frame>
+						<div className="page-container h-full w-full p-4">
+							<Frame>
+								<Element is={Canvas} id="ROOT" canvas></Element>
+							</Frame>
+						</div>
 					</Viewport>
 					<RightSidebar
 						height={height}
