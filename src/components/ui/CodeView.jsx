@@ -9,6 +9,7 @@ const CodeView = ({ codeString }) => {
 				text={codeString}
 				language={'javascript'}
 				theme={dracula}
+				codeBlock
 			/>
 		</div>
 	)
