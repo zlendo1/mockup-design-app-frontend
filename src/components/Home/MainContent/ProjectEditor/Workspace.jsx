@@ -7,6 +7,7 @@ import RightSidebar from './RightSidebar/RightSidebar.jsx'
 import Canvas from './Canvas/Canvas.jsx'
 import Viewport from './Canvas/Viewport.jsx'
 import Container from '../../../nodes/Container.jsx'
+import RenderNode from '../../../nodes/RenderNode.jsx'
 
 const Workspace = ({ project, onSave }) => {
 	const [width, setWidth] = useState('') // State for width
@@ -17,6 +18,7 @@ const Workspace = ({ project, onSave }) => {
 			resolver={{
 				Container,
 			}}
+			onRender={RenderNode}
 		>
 			<div className="relative flex flex-1 overflow-hidden">
 				<LeftSidebar projectName={project.name} />
