@@ -1,20 +1,14 @@
 import PropTypes from 'prop-types'
-import { useEditor, useNode } from '@craftjs/core'
+import { Element, Frame, useEditor } from '@craftjs/core'
 import { Code, Redo, Undo, Save } from 'lucide-react'
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 
 import { getOutputCode } from '../../../../../utils/codeGenerator.js'
 import { Drawer, DrawerContent, DrawerTrigger } from '../../../../ui/Drawer.jsx'
 import CodeView from '../../../../ui/CodeView.jsx'
-import { SaveContext } from '../Workspace.jsx'
+import Container from '../../../../nodes/Container.jsx'
 
-const Canvas = ({ children }) => {
-	const onSave = useContext(SaveContext)
-
-	const {
-		connectors: { connect, drag },
-	} = useNode()
-
+const Canvas = ({ project, onSave, children }) => {
 	const { canUndo, canRedo, actions, query } = useEditor((state, query) => ({
 		canUndo: query.history.canUndo(),
 		canRedo: query.history.canRedo(),
@@ -95,30 +89,20 @@ const Canvas = ({ children }) => {
 						</div>
 					</div>
 				</div>
-				<div
-					className="flex-grow rounded-b-lg border bg-white"
-					ref={ref => {
-						if (ref) {
-							connect(drag(ref))
-						}
-					}}
-				>
-					{children}
-				</div>
+				<Frame data={project.serialized}>
+					<Element is={Container} id="ROOT" canvas>
+						{children}
+					</Element>
+				</Frame>
 			</div>
 		</div>
 	)
 }
 
 Canvas.propTypes = {
+	project: PropTypes.object.isRequired,
+	onSave: PropTypes.func.isRequired,
 	children: PropTypes.node,
-}
-
-Canvas.craft = {
-	displayName: 'div',
-	props: {
-		className: 'w-full h-full',
-	},
 }
 
 export default Canvas

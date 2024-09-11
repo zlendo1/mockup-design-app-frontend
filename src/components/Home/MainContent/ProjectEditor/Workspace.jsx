@@ -1,44 +1,38 @@
 import PropTypes from 'prop-types'
-import { createContext, useState } from 'react'
-import { Editor, Frame, Element } from '@craftjs/core'
+import { useState } from 'react'
+import { Editor } from '@craftjs/core'
 
 import LeftSidebar from './LeftSidebar/LeftSidebar.jsx'
 import RightSidebar from './RightSidebar/RightSidebar.jsx'
 import Canvas from './Canvas/Canvas.jsx'
 import Viewport from './Canvas/Viewport.jsx'
-
-// eslint-disable-next-line no-unused-vars
-export const SaveContext = createContext(_ => {})
+import Container from '../../../nodes/Container.jsx'
 
 const Workspace = ({ project, onSave }) => {
 	const [width, setWidth] = useState('') // State for width
 	const [height, setHeight] = useState('') // State for height
 
 	return (
-		<SaveContext.Provider value={onSave}>
-			<Editor
-				resolver={{
-					Canvas,
-				}}
-			>
-				<div className="relative flex flex-1 overflow-hidden">
-					<LeftSidebar projectName={project.name} />
-					<Viewport>
-						<div className="page-container h-full w-full p-4">
-							<Frame>
-								<Element is={Canvas} id="ROOT" canvas></Element>
-							</Frame>
-						</div>
-					</Viewport>
-					<RightSidebar
-						height={height}
-						width={width}
-						setHeight={setHeight}
-						setWidth={setWidth}
-					/>
-				</div>
-			</Editor>
-		</SaveContext.Provider>
+		<Editor
+			resolver={{
+				Container,
+			}}
+		>
+			<div className="relative flex flex-1 overflow-hidden">
+				<LeftSidebar projectName={project.name} />
+				<Viewport>
+					<div className="page-container h-full w-full p-4">
+						<Canvas project={project} onSave={onSave}></Canvas>
+					</div>
+				</Viewport>
+				<RightSidebar
+					height={height}
+					width={width}
+					setHeight={setHeight}
+					setWidth={setWidth}
+				/>
+			</div>
+		</Editor>
 	)
 }
 

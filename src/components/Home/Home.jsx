@@ -34,7 +34,6 @@ const Home = () => {
 	const handleCreateNewProject = projectName => {
 		const newProject = {
 			name: projectName,
-			serialized: {},
 		}
 
 		setSelectedProject(newProject)
