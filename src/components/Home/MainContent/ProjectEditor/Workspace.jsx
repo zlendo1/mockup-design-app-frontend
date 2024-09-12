@@ -5,7 +5,7 @@ import LeftSidebar from './LeftSidebar/LeftSidebar.jsx'
 import RightSidebar from './RightSidebar/RightSidebar.jsx'
 import Canvas from './Canvas/Canvas.jsx'
 import Viewport from './Canvas/Viewport.jsx'
-import { componentsMap } from '../../../nodes/componentsMap.jsx'
+import componentsMap from '../../../nodes/ComponentMap.jsx'
 import Container from '../../../nodes/Container.jsx'
 import RenderNode from '../../../nodes/RenderNode.jsx'
 
