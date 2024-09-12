@@ -3,10 +3,14 @@ import { Element, Frame, useEditor } from '@craftjs/core'
 import { Code, Redo, Undo, Save } from 'lucide-react'
 import { useState } from 'react'
 
-import { getOutputCode } from '../../../../../utils/codeGenerator.js'
-import { Drawer, DrawerContent, DrawerTrigger } from '../../../../ui/Drawer.jsx'
-import CodeView from '../../../../ui/CodeView.jsx'
-import Container from '../../../../nodes/Container.jsx'
+import { getOutputCode } from '@/utils/codeGenerator.js'
+import {
+	Drawer,
+	DrawerContent,
+	DrawerTrigger,
+} from '@/components/ui/Drawer.jsx'
+import CodeView from '@/components/ui/CodeView.jsx'
+import Container from '@/components/nodes/Container.jsx'
 
 const Canvas = ({ project, onSave, children }) => {
 	const { canUndo, canRedo, actions, query } = useEditor((state, query) => ({
