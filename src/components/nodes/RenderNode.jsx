@@ -12,7 +12,7 @@ const RenderNode = ({ render }) => {
 	useEffect(() => {
 		if (dom && id !== 'ROOT') {
 			if (isHover) {
-				dom.classList.add('component-hover', isHover)
+				dom.classList.add('component-hover')
 			} else {
 				dom.classList.remove('component-hover')
 			}
