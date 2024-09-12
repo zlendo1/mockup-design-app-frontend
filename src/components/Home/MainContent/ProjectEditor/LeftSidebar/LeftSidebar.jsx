@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import { useEditor } from '@craftjs/core'
+import { forwardRef } from 'react'
 
 import { classMerger } from '../../../../../utils/cssClassHandler.js'
 import {
@@ -11,7 +12,6 @@ import {
 	NavigationMenuContent,
 	NavigationMenuViewport,
 } from '../../../../ui/VerticalNavigationMenu.jsx'
-import { forwardRef } from 'react'
 
 const ListItem = forwardRef(({ className, children, ...props }, ref) => (
 	<li className="w-full p-2">
