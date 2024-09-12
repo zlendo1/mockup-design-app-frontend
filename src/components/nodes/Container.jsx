@@ -9,9 +9,9 @@ const Container = ({ children }) => {
 	return (
 		<div
 			className="flex-grow rounded-b-lg border bg-white"
-			ref={ref => {
-				if (ref) {
-					connect(drag(ref))
+			ref={dom => {
+				if (dom) {
+					connect(drag(dom))
 				}
 			}}
 		>
