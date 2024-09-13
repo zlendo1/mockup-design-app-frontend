@@ -5,12 +5,14 @@ import { Link } from 'react-router-dom'
 import Cookies from 'js-cookie'
 
 import { callPost } from '../../utils/apiHandler.js'
+import { classMerger } from '@/utils/cssClassHandler.js'
 
 const Login = () => {
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
 
 	const [isLoggedIn, setIsLoggedIn] = useState(!!Cookies.get('jwt'))
+	const [loading, setLoading] = useState(false)
 
 	useEffect(() => {
 		setIsLoggedIn(!!Cookies.get('jwt'))
@@ -23,13 +25,20 @@ const Login = () => {
 	const handleLogin = e => {
 		e.preventDefault()
 
+		if (loading) {
+			return
+		}
+
 		const requestBody = { username, password }
+
+		setLoading(true)
 
 		callPost('/auth/login', requestBody)
 			.then(data => {
 				Cookies.set('jwt', data.token)
 				localStorage.setItem('username', requestBody.username)
 
+				setLoading(false)
 				setIsLoggedIn(true)
 			})
 			.catch(error => {
@@ -72,7 +81,13 @@ const Login = () => {
 						Register
 					</Link>
 				</p>
-				<button type="submit" className="login-button">
+				<button
+					type="submit"
+					className={classMerger(
+						'login-button',
+						loading ? 'opacity-25' : ''
+					)}
+				>
 					Login
 				</button>
 			</form>

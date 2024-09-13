@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import Cookies from 'js-cookie'
 
 import { callPost } from '../../utils/apiHandler.js'
+import { classMerger } from '@/utils/cssClassHandler.js'
 
 const Register = () => {
 	const [username, setUsername] = useState('')
@@ -12,6 +13,7 @@ const Register = () => {
 	const [confirmPassword, setConfirmPassword] = useState('')
 
 	const [isLoggedIn, setIsLoggedIn] = useState(!!Cookies.get('jwt'))
+	const [loading, setLoading] = useState(false)
 
 	useEffect(() => {
 		setIsLoggedIn(!!Cookies.get('jwt'))
@@ -24,6 +26,10 @@ const Register = () => {
 	const handleRegister = e => {
 		e.preventDefault()
 
+		if (loading) {
+			return
+		}
+
 		if (password !== confirmPassword) {
 			alert('Passwords do not match!')
 
@@ -32,11 +38,14 @@ const Register = () => {
 
 		const requestBody = { username, password }
 
+		setLoading(true)
+
 		callPost('/auth/register', requestBody)
 			.then(data => {
 				Cookies.set('jwt', data.token)
 				localStorage.setItem('username', requestBody.username)
 
+				setLoading(false)
 				setIsLoggedIn(true)
 			})
 			.catch(error => {
@@ -87,7 +96,13 @@ const Register = () => {
 						Login
 					</Link>
 				</p>
-				<button type="submit" className="register-button">
+				<button
+					type="submit"
+					className={classMerger(
+						'register-button',
+						loading ? 'opacity-25' : ''
+					)}
+				>
 					Register
 				</button>
 			</form>

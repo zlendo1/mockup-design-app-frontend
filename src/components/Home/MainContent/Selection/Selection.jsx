@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import Cookies from 'js-cookie'
 
-import { callGet } from '../../../../utils/apiHandler.js'
+import { callGet } from '@/utils/apiHandler.js'
 
 const Selection = ({ onCreateNewProject, onSelectProject }) => {
 	const [newProjectName, setNewProjectName] = useState('')
 	const [projects, setProjects] = useState([])
+
+	const [loadingProjects, setLoadingProjects] = useState(true)
 
 	const handleCreateProject = () => {
 		if (newProjectName.trim()) {
@@ -17,6 +19,7 @@ const Selection = ({ onCreateNewProject, onSelectProject }) => {
 
 	useEffect(() => {
 		callGet('/project/names', Cookies.get('jwt')).then(projects => {
+			setLoadingProjects(false)
 			setProjects(projects)
 		})
 	}, [])
@@ -26,15 +29,17 @@ const Selection = ({ onCreateNewProject, onSelectProject }) => {
 			<h2 className="mb-4 text-2xl font-semibold">Your Projects</h2>
 			<div className="mb-6">
 				<h3 className="mb-2 text-xl">Select an Existing Project</h3>
-				{projects.map(project => (
-					<button
-						key={project.id}
-						onClick={() => onSelectProject(project.id)}
-						className="mb-2 w-full rounded bg-gray-200 p-2 text-left"
-					>
-						{project.name}
-					</button>
-				))}
+				{(loadingProjects && <p>Loading...</p>) ||
+					(projects.length === 0 && <p>No projects found.</p>) ||
+					projects.map(project => (
+						<button
+							key={project.id}
+							onClick={() => onSelectProject(project.id)}
+							className="mb-2 w-full rounded bg-gray-200 p-2 text-left"
+						>
+							{project.name}
+						</button>
+					))}
 			</div>
 			<div>
 				<h3 className="mb-2 text-xl">Create a New Project</h3>
