@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Cookies from 'js-cookie'
 
-import { callPost } from '../../utils/apiHandler.js'
+import { callPost } from '@/utils/apiHandler.js'
 import { classMerger } from '@/utils/cssClassHandler.js'
 
 const Register = () => {
