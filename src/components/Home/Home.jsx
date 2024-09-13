@@ -1,14 +1,17 @@
 import Header from './Header/Header.jsx'
 import MainContent from './MainContent/MainContent.jsx'
+import { callGet, callPost } from '../../utils/apiHandler.js'
 
 import { useEffect, useState } from 'react'
 import Cookies from 'js-cookie'
 
 const Home = () => {
-	const [isLoggedIn, setIsLoggedIn] = useState(!!Cookies.get('jwt'))
+	const token = () => Cookies.get('jwt')
+
+	const [isLoggedIn, setIsLoggedIn] = useState(!!token())
 
 	useEffect(() => {
-		setIsLoggedIn(!!Cookies.get('jwt'))
+		setIsLoggedIn(!!token())
 	}, [])
 
 	if (!isLoggedIn) {
@@ -28,18 +31,37 @@ const Home = () => {
 		setSelectedProject(null)
 	}
 
-	const handleSave = () => {
-		// Save project logic here
-	}
-
-	// TODO: Implement project creation logic
 	const handleCreateNewProject = projectName => {
-		setSelectedProject(projectName)
+		const newProject = {
+			name: projectName,
+		}
+
+		setSelectedProject(newProject)
 	}
 
-	// TODO: Implement project selection logic by id
-	const handleSelectProject = projectName => {
-		setSelectedProject(projectName)
+	const handleSave = serialized => {
+		const updatedProject = {
+			...selectedProject,
+			serialized: serialized,
+		}
+
+		callPost('/project', updatedProject, token())
+			.then(project => {
+				setSelectedProject(project)
+			})
+			.catch(error => {
+				alert('Error: ' + error.message)
+			})
+	}
+
+	const handleSelectProject = projectId => {
+		callGet(`/project/${projectId}`, token())
+			.then(project => {
+				setSelectedProject(project)
+			})
+			.catch(error => {
+				alert('Error: ' + error.message)
+			})
 	}
 
 	return (
@@ -48,13 +70,12 @@ const Home = () => {
 				username={localStorage.getItem('username')}
 				onLogout={handleLogout}
 				onProjectSelect={handleProjectSelect}
-				onSave={handleSave}
-				selectedProject={selectedProject}
 			/>
 			<MainContent
 				selectedProject={selectedProject}
 				onCreateNewProject={handleCreateNewProject}
 				onSelectProject={handleSelectProject}
+				onSave={handleSave}
 			/>
 		</div>
 	)

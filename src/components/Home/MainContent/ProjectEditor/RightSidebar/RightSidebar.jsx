@@ -1,47 +1,27 @@
-import { useState } from 'react'
-import PropTypes from 'prop-types'
-
 import Hierarchy from './Hierarchy/Hierarchy.jsx'
 import Styling from './Styling/Styling.jsx'
 
-const RightSidebar = ({ height, width, setHeight, setWidth }) => {
-	const [activeTab, setActiveTab] = useState('hierarchy')
-
+const RightSidebar = () => {
 	return (
-		<aside className="w-1/4 bg-gray-100 p-4">
-			<div className="mb-4 flex border-b">
-				<button
-					className={`flex-1 p-2 text-center ${activeTab === 'hierarchy' ? 'bg-white' : 'bg-gray-200'}`}
-					onClick={() => setActiveTab('hierarchy')}
-				>
-					Component Hierarchy
-				</button>
-				<button
-					className={`flex-1 p-2 text-center ${activeTab === 'styling' ? 'bg-white' : 'bg-gray-200'}`}
-					onClick={() => setActiveTab('styling')}
-				>
-					Component Styling
-				</button>
+		<aside className="flex w-80 flex-col border-l bg-white">
+			<div className="h-1/2 w-full border-b">
+				<h3 className="text-md border-b px-4 py-2 text-left font-semibold">
+					Hierarchy
+				</h3>
+				<div>
+					<Hierarchy />
+				</div>
 			</div>
-
-			{activeTab === 'hierarchy' && <Hierarchy />}
-			{activeTab === 'styling' && (
-				<Styling
-					height={height}
-					width={width}
-					onSetHeight={setHeight}
-					onSetWidth={setWidth}
-				/>
-			)}
+			<div className="h-1/2 w-full">
+				<h3 className="text-md border-b px-4 py-2 text-left font-semibold">
+					Styling
+				</h3>
+				<div className="p-4">
+					<Styling />
+				</div>
+			</div>
 		</aside>
 	)
-}
-
-RightSidebar.propTypes = {
-	height: PropTypes.string.isRequired,
-	width: PropTypes.string.isRequired,
-	setHeight: PropTypes.func.isRequired,
-	setWidth: PropTypes.func.isRequired,
 }
 
 export default RightSidebar
