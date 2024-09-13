@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { Element, Frame, useEditor } from '@craftjs/core'
-import { Code, Redo, Undo, Save } from 'lucide-react'
+import { Code, Redo, Undo, Save, LoaderCircle } from 'lucide-react'
 import { useState } from 'react'
 
 import { getOutputCode } from '@/utils/codeGenerator.js'
@@ -28,10 +28,16 @@ const Canvas = ({ project, onSave, children }) => {
 
 	const [exportOpen, setExportOpen] = useState(false)
 
+	const [saveLoading, setSaveLoading] = useState(false)
+
 	const handleSave = () => {
+		setSaveLoading(true)
+
 		const serialized = query.serialize()
 
-		onSave(serialized)
+		onSave(serialized, () => {
+			setSaveLoading(false)
+		})
 	}
 
 	return (
@@ -39,12 +45,20 @@ const Canvas = ({ project, onSave, children }) => {
 			<div className="flex h-full w-full flex-col rounded-sm border">
 				<div className="flex w-full items-center justify-between bg-gray-200 p-4">
 					<button className="flex w-16 justify-center">
-						<Save
-							size={24}
-							strokeWidth={1.75}
-							onClick={handleSave}
-							className="text-gray-500 transition duration-300 hover:text-primary"
-						/>
+						{(!saveLoading && (
+							<Save
+								size={24}
+								strokeWidth={1.75}
+								onClick={handleSave}
+								className="text-gray-500 transition duration-300 hover:text-primary"
+							/>
+						)) || (
+							<LoaderCircle
+								size={24}
+								strokeWidth={1.75}
+								className="animate-spin text-gray-500 transition duration-300 hover:text-primary"
+							/>
+						)}
 					</button>
 					<div className="flex gap-2">
 						<Drawer

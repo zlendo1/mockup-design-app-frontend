@@ -39,7 +39,7 @@ const Home = () => {
 		setSelectedProject(newProject)
 	}
 
-	const handleSave = serialized => {
+	const handleSave = (serialized, callBack = () => {}) => {
 		const updatedProject = {
 			...selectedProject,
 			serialized: serialized,
@@ -48,6 +48,8 @@ const Home = () => {
 		callPost('/project', updatedProject, token())
 			.then(project => {
 				setSelectedProject(project)
+
+				callBack()
 			})
 			.catch(error => {
 				alert('Error: ' + error.message)
