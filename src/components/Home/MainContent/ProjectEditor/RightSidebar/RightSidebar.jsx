@@ -11,8 +11,9 @@ const RightSidebar = () => {
 			<div className="flex w-full">
 				<button
 					className={classMerger(
-						'text-md w-1/2 border-b bg-gray-200 px-4 py-2 text-left font-semibold',
-						activeTab === 'styling' && 'bg-white'
+						'text-md w-1/2 border-b bg-gray-200 px-4 py-2 text-left font-semibold transition-colors duration-200',
+						(activeTab === 'styling' && 'border-b-2 bg-white') ||
+							'hover:bg-gray-300'
 					)}
 					onClick={() => setActiveTab('styling')}
 				>
@@ -20,8 +21,9 @@ const RightSidebar = () => {
 				</button>
 				<button
 					className={classMerger(
-						'text-md w-1/2 border-b border-l bg-gray-200 px-4 py-2 text-left font-semibold',
-						activeTab === 'hierarchy' && 'bg-white'
+						'text-md w-1/2 border-b bg-gray-200 px-4 py-2 text-left font-semibold transition-colors duration-200',
+						(activeTab === 'hierarchy' && 'border-b-2 bg-white') ||
+							'hover:bg-gray-300'
 					)}
 					onClick={() => setActiveTab('hierarchy')}
 				>
