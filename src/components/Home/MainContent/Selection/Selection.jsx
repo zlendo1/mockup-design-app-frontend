@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import Cookies from 'js-cookie'
-import { Trash2 } from 'lucide-react'
+import { Trash2, LoaderCircle } from 'lucide-react'
 
 import { callDelete, callGet } from '@/utils/apiHandler.js'
 import { classMerger } from '@/utils/cssClassHandler.js'
@@ -67,7 +67,15 @@ const Selection = ({ onCreateNewProject, onSelectProject }) => {
 					<h3 className="mb-4 text-2xl font-semibold">
 						Select an Existing Project
 					</h3>
-					{(loadingProjects && <p>Loading...</p>) ||
+					{(loadingProjects && (
+						<div className="flex w-full content-center justify-center">
+							<LoaderCircle
+								size={24}
+								strokeWidth={1.75}
+								className="animate-spin text-gray-500 transition duration-300 hover:text-primary"
+							/>
+						</div>
+					)) ||
 						(projects.length === 0 && <p>No projects found.</p>) ||
 						projects.map(project => (
 							<div
