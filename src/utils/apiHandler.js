@@ -64,3 +64,20 @@ export function callGet(url, authorization = '') {
 		},
 	}).then(async response => handleResponse(response))
 }
+
+/**
+ * Makes a DELETE request to the specified URL.
+ *
+ * @param {string} url - The URL to make the DELETE request to.
+ * @param {string} authorization - The authorization token to include in the request.
+ * @returns {Promise<Object>} - A promise that resolves to the JSON data from the response.
+ */
+export function callDelete(url, authorization = '') {
+	return fetch(BACKEND_URL + url, {
+		method: 'DELETE',
+		headers: {
+			Authorization: authorization,
+			'Content-Type': 'application/json',
+		},
+	}).then(async response => handleResponse(response))
+}

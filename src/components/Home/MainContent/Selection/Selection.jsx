@@ -1,14 +1,27 @@
 import { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import Cookies from 'js-cookie'
+import { Trash2 } from 'lucide-react'
 
-import { callGet } from '@/utils/apiHandler.js'
+import { callDelete, callGet } from '@/utils/apiHandler.js'
+import { classMerger } from '@/utils/cssClassHandler.js'
 
 const Selection = ({ onCreateNewProject, onSelectProject }) => {
 	const [newProjectName, setNewProjectName] = useState('')
 	const [projects, setProjects] = useState([])
 
 	const [loadingProjects, setLoadingProjects] = useState(true)
+	const [deletingProjectId, setDeletingProjectId] = useState(false)
+
+	const token = () => Cookies.get('jwt')
+
+	useEffect(() => {
+		callGet('/project/names', token()).then(projects => {
+			setLoadingProjects(false)
+
+			setProjects(projects)
+		})
+	}, [])
 
 	const handleCreateProject = () => {
 		if (newProjectName.trim()) {
@@ -17,12 +30,19 @@ const Selection = ({ onCreateNewProject, onSelectProject }) => {
 		}
 	}
 
-	useEffect(() => {
-		callGet('/project/names', Cookies.get('jwt')).then(projects => {
-			setLoadingProjects(false)
-			setProjects(projects)
+	const handleDeleteProject = projectId => {
+		if (deletingProjectId) {
+			return
+		}
+
+		setDeletingProjectId(projectId)
+
+		callDelete(`/project/${projectId}`, token()).then(() => {
+			setProjects(projects.filter(project => project.id !== projectId))
+
+			setDeletingProjectId(null)
 		})
-	}, [])
+	}
 
 	return (
 		<div className="container mx-auto flex w-2/5 p-6">
@@ -37,13 +57,30 @@ const Selection = ({ onCreateNewProject, onSelectProject }) => {
 					{(loadingProjects && <p>Loading...</p>) ||
 						(projects.length === 0 && <p>No projects found.</p>) ||
 						projects.map(project => (
-							<button
+							<div
 								key={project.id}
-								onClick={() => onSelectProject(project.id)}
-								className="mb-2 w-full rounded-lg bg-gray-100 p-3 text-left hover:bg-gray-200"
+								className="mb-2 flex items-center"
 							>
-								{project.name}
-							</button>
+								<button
+									onClick={() => onSelectProject(project.id)}
+									className="flex-grow rounded-lg bg-gray-100 p-3 text-left hover:bg-gray-200"
+								>
+									{project.name}
+								</button>
+								<button
+									onClick={() =>
+										handleDeleteProject(project.id)
+									}
+									className={classMerger(
+										'ml-2 rounded-lg bg-red-600 p-3 text-white hover:bg-red-700',
+										deletingProjectId === project.id
+											? 'opacity-25'
+											: ''
+									)}
+								>
+									<Trash2 />
+								</button>
+							</div>
 						))}
 				</div>
 				<div>
