@@ -44,7 +44,7 @@ const LeftSidebar = ({ componentsMap }) => {
 			<NavigationMenuList className="w-36 flex-col">
 				{componentsMap.map((menuItem, index) => (
 					<NavigationMenuItem key={index} className="p-2">
-						<NavigationMenuTrigger className="flex-justify-between w-full">
+						<NavigationMenuTrigger className="flex w-full justify-between">
 							{menuItem.name}
 						</NavigationMenuTrigger>
 						<NavigationMenuContent className="w-full">

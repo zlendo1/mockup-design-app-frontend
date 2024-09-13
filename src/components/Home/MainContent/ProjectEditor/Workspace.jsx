@@ -18,6 +18,7 @@ import {
 	NodeCardDescription,
 	NodeCardContent,
 } from '@/components/nodes/NodeCard.jsx'
+import ReactIframe from '@/components/ui/ReactIframe.jsx'
 
 const Workspace = ({ project, onSave }) => {
 	return (
@@ -39,9 +40,12 @@ const Workspace = ({ project, onSave }) => {
 			<div className="relative flex flex-1 overflow-hidden">
 				<LeftSidebar componentsMap={componentsMap} />
 				<Viewport>
-					<div className="page-container h-full w-full p-4">
+					<ReactIframe
+						title=""
+						className="page-container h-full w-full p-4"
+					>
 						<Canvas project={project} onSave={onSave}></Canvas>
-					</div>
+					</ReactIframe>
 				</Viewport>
 				<RightSidebar />
 			</div>
