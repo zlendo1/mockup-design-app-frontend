@@ -1,7 +1,7 @@
 import { Element } from '@craftjs/core'
 
 import SettingsControl from '@/components/ui/SettingsControl.jsx'
-import withNode from '@/components/nodes/withNode.jsx'
+import withNode from '@/components/nodes/WithNode.jsx'
 import Block from '@/components/ui/Block.jsx'
 
 const draggable = true

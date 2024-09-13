@@ -9,6 +9,7 @@ import componentsMap from '@/components/nodes/ComponentMap.jsx'
 import Container from '@/components/nodes/Container.jsx'
 import RenderNode from '@/components/nodes/RenderNode.jsx'
 import NodeButton from '@/components/nodes/NodeButton.jsx'
+import { NodeOneBlock, NodeTwoBlocks } from '@/components/nodes/NodeBlock.jsx'
 
 const Workspace = ({ project, onSave }) => {
 	return (
@@ -16,6 +17,8 @@ const Workspace = ({ project, onSave }) => {
 			resolver={{
 				Container,
 				NodeButton,
+				NodeOneBlock,
+				NodeTwoBlocks,
 			}}
 			onRender={RenderNode}
 		>
