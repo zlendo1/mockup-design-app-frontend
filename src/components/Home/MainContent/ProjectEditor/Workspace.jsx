@@ -10,6 +10,14 @@ import Container from '@/components/nodes/Container.jsx'
 import RenderNode from '@/components/nodes/RenderNode.jsx'
 import NodeButton from '@/components/nodes/NodeButton.jsx'
 import { NodeOneBlock, NodeTwoBlocks } from '@/components/nodes/NodeBlock.jsx'
+import {
+	NodeCard,
+	NodeCardHeader,
+	NodeCardFooter,
+	NodeCardTitle,
+	NodeCardDescription,
+	NodeCardContent,
+} from '@/components/nodes/NodeCard.jsx'
 
 const Workspace = ({ project, onSave }) => {
 	return (
@@ -19,6 +27,12 @@ const Workspace = ({ project, onSave }) => {
 				NodeButton,
 				NodeOneBlock,
 				NodeTwoBlocks,
+				NodeCard,
+				NodeCardHeader,
+				NodeCardFooter,
+				NodeCardTitle,
+				NodeCardDescription,
+				NodeCardContent,
 			}}
 			onRender={RenderNode}
 		>

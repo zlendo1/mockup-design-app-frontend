@@ -4,6 +4,15 @@ import Button from '../ui/Button.jsx'
 import NodeButton from './NodeButton.jsx'
 import Block from '../ui/Block.jsx'
 import { NodeOneBlock, NodeTwoBlocks } from './NodeBlock.jsx'
+import {
+	Card,
+	CardHeader,
+	CardTitle,
+	CardDescription,
+	CardContent,
+	CardFooter,
+} from '../ui/Card.jsx'
+import { NodeCard } from './NodeCard.jsx'
 
 const componentsMap = [
 	{
@@ -27,6 +36,27 @@ const componentsMap = [
 				node: (
 					<NodeButton variant={'destructive'}>Destructive</NodeButton>
 				),
+			},
+		],
+	},
+	{
+		name: 'Cards',
+		items: [
+			{
+				name: 'Default',
+				demo: (
+					<Card className="w-full">
+						<CardHeader>
+							<CardTitle>Card Title</CardTitle>
+							<CardDescription>Card Description</CardDescription>
+						</CardHeader>
+						<CardContent>Empty Container</CardContent>
+						<CardFooter>
+							<Button className="w-full">Footer button</Button>
+						</CardFooter>
+					</Card>
+				),
+				node: <NodeCard></NodeCard>,
 			},
 		],
 	},

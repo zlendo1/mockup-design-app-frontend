@@ -2,8 +2,8 @@ import { forwardRef } from 'react'
 import { useEditor, useNode } from '@craftjs/core'
 import PropTypes from 'prop-types'
 
-const BUTTON_PATH = '@/components/nodes/NodeButton.jsx'
-const CARD_PATH = '@/components/nodes/NodeCard.jsx'
+const BUTTON_PATH = '@/components/Button'
+const CARD_PATH = '@/components/Card'
 
 const importPathMap = {
 	button: BUTTON_PATH,
