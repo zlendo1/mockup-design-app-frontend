@@ -56,10 +56,12 @@ const Home = () => {
 			})
 	}
 
-	const handleSelectProject = projectId => {
+	const handleSelectProject = (projectId, callBack = () => {}) => {
 		callGet(`/project/${projectId}`, token())
 			.then(project => {
 				setSelectedProject(project)
+
+				callBack()
 			})
 			.catch(error => {
 				alert('Error: ' + error.message)

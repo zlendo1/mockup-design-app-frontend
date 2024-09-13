@@ -12,6 +12,7 @@ const Selection = ({ onCreateNewProject, onSelectProject }) => {
 
 	const [loadingProjects, setLoadingProjects] = useState(true)
 	const [deletingProjectId, setDeletingProjectId] = useState(false)
+	const [loadingProjectId, setLoadingProjectId] = useState(null)
 
 	const token = () => Cookies.get('jwt')
 
@@ -28,6 +29,18 @@ const Selection = ({ onCreateNewProject, onSelectProject }) => {
 			onCreateNewProject(newProjectName.trim())
 			setNewProjectName('')
 		}
+	}
+
+	const handleSelectProject = projectId => {
+		if (loadingProjectId) {
+			return
+		}
+
+		setLoadingProjectId(projectId)
+
+		onSelectProject(projectId, () => {
+			setLoadingProjectId(null)
+		})
 	}
 
 	const handleDeleteProject = projectId => {
@@ -62,8 +75,15 @@ const Selection = ({ onCreateNewProject, onSelectProject }) => {
 								className="mb-2 flex items-center"
 							>
 								<button
-									onClick={() => onSelectProject(project.id)}
-									className="flex-grow rounded-lg bg-gray-100 p-3 text-left hover:bg-gray-200"
+									onClick={() =>
+										handleSelectProject(project.id)
+									}
+									className={classMerger(
+										'flex-grow rounded-lg bg-gray-100 p-3 text-left hover:bg-gray-200',
+										loadingProjectId === project.id
+											? 'opacity-25'
+											: ''
+									)}
 								>
 									{project.name}
 								</button>
