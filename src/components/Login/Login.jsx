@@ -42,6 +42,8 @@ const Login = () => {
 				setIsLoggedIn(true)
 			})
 			.catch(error => {
+				setLoading(false)
+
 				alert('Error: ' + error.message)
 			})
 	}
