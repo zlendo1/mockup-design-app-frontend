@@ -1,6 +1,6 @@
 import Header from './Header/Header.jsx'
 import MainContent from './MainContent/MainContent.jsx'
-import { callGet, callPost } from '../../utils/apiHandler.js'
+import { callGet, callPost } from '@/utils/apiHandler.js'
 
 import { useEffect, useState } from 'react'
 import Cookies from 'js-cookie'
@@ -14,9 +14,11 @@ const Home = () => {
 		setIsLoggedIn(!!token())
 	}, [])
 
-	if (!isLoggedIn) {
-		window.location.reload()
-	}
+	useEffect(() => {
+		if (!isLoggedIn) {
+			window.location.reload()
+		}
+	}, [isLoggedIn])
 
 	const [selectedProject, setSelectedProject] = useState(null) // Track the selected project
 

@@ -19,9 +19,11 @@ const Register = () => {
 		setIsLoggedIn(!!Cookies.get('jwt'))
 	}, [])
 
-	if (isLoggedIn) {
-		window.location.reload()
-	}
+	useEffect(() => {
+		if (isLoggedIn) {
+			window.location.reload()
+		}
+	}, [isLoggedIn])
 
 	const handleRegister = e => {
 		e.preventDefault()
